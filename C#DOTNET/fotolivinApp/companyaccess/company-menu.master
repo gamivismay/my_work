@@ -1,0 +1,274 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="company-menu.master.cs" Inherits="company_menu" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Fotolivin</title>
+        <link href="assets/css/uploadify.css" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+
+    <!--favicons starts-->
+<link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<!--favicons ends-->
+
+<%--<!--prevent back button-->    
+    <script type = "text/javascript" >
+        function preventBack() { window.history.forward(); }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null };
+</script>
+<!--prevent back button-->--%>
+    <!-- Bootstrap core CSS -->
+
+   
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <!--external css-->
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="assets/css/zabuto_calendar.css">
+    <link rel="stylesheet" type="text/css" href="assets/js/gritter/css/jquery.gritter.css" />
+    <link rel="stylesheet" type="text/css" href="assets/lineicons/style.css">
+    <!-- Custom styles for this template -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/style-responsive.css" rel="stylesheet">
+    <script src="assets/js/chart-master/Chart.js"></script>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <%-- <script src="assets/js/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        ShowTime();
+    });
+    function ShowTime() {
+        var dt = new Date();
+        var mnth = dt.getMonth() + 1;
+        document.getElementById("h").value = dt.getDate() + "-" + mnth + "-" + dt.getFullYear() + " " + dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+        window.setTimeout("ShowTime()", 1000); // Here 1000(milliseconds) means one 1 Sec  
+    }
+</script>--%>
+<script src="js/jquery-1.8.2.js" type="text/javascript"></script>
+  <script type="text/javascript">
+      $(window).load(function () {
+          $("#pageloaddiv").fadeOut(1000);
+      });
+</script>
+<style type="text/css">
+#pageloaddiv {
+position: fixed;
+left: 0px;
+top: 0px;
+width: 100%;
+height: 100%;
+z-index: 1000;
+background: url('images/loader.gif') no-repeat center center;
+background-color:rgba(1,1,1,0.5);
+}
+</style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+<div id="pageloaddiv"></div>
+    <form id="form1" runat="server">
+          <asp:HiddenField ID="h" runat="server" />
+    <div>
+        <!--header start-->
+        <header class="header black-bg">
+            <div class="sidebar-toggle-box">
+                <div class="fa fa-bars tooltips" style="color:#fff;" data-placement="right" data-original-title="Toggle Navigation">
+                </div>
+            </div>
+            <!--logo start-->
+            <a href="#" class="logo"><asp:Label ID="companynamelbl"  runat="server" Text="" ForeColor="White"></asp:Label></a>
+            <!--logo end-->
+            <div class="nav notify-row" id="top_menu">
+            </div>
+            <div class="top-menu">
+                <ul class="nav pull-right top-menu">
+                    <li>
+                        <asp:Button ID="logoutbtn" class="logout" runat="server" Text="Logout" 
+                            onclick="logoutbtn_Click" />
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <!--header end-->
+        <!-- **********************************************************************************************************************************************************
+      MAIN SIDEBAR MENU
+      *********************************************************************************************************************************************************** -->
+        <!--sidebar start-->
+        <aside>
+            <div id="sidebar" class="nav-collapse ">
+                <!-- sidebar menu start-->
+                <ul class="sidebar-menu" id="nav-accordion">
+                    <p class="centered">
+                         <asp:Repeater ID="Repeater1" runat="server">
+        <ItemTemplate>
+                            <img src="<%#Eval("companyProfImgPath1") %>" style="border:2px solid white;" class="img-circle" width="100">
+                            </ItemTemplate>
+         </asp:Repeater> 
+                            
+                            </p>
+                    <h5 class="centered">
+                       Company ID: <asp:Label ID="companyidlbl" runat="server" Text=""></asp:Label></h5>
+                    <li class="mt"><a><i class="fa fa-dashboard"></i><span>
+                        <asp:Button ID="dashboardbtn" runat="server" Text="Dashboard" 
+                            BorderStyle="None" BackColor="Transparent" onclick="dashboardbtn_Click" /></span></a></li>
+                   
+                                       
+                    <li class="sub-menu"><a><i class="fa fa-user"></i><span>
+                        <asp:Button ID="registeredcustomersbtn" runat="server" 
+                            Text="Registered Customers" BorderStyle="None" BackColor="Transparent" 
+                            onclick="registeredcustomersbtn_Click" /></span>
+                    </a></li>
+                     <li class="sub-menu"><a><i class="fa fa-users"></i><span>
+                        <asp:Button ID="registeredusersbtn" runat="server" 
+                            Text="Registered Users" BorderStyle="None" BackColor="Transparent" 
+                            onclick="registeredusersbtn_Click" /></span>
+                    </a></li>
+                     <li class="sub-menu"><a><i class="fa fa-compass"></i><span>
+                        <asp:Button ID="explorebtn" runat="server" Text="Explore Blog" 
+                            BorderStyle="None" BackColor="Transparent" onclick="explorebtn_Click" /></span>
+                    </a></li>
+
+                           <li class="sub-menu"><a><i class="fa fa-border"></i><span>
+                        <asp:Button ID="products" runat="server" Text="Products" 
+                            BorderStyle="None" BackColor="Transparent" onclick="products_Click" /></span>
+                    </a></li>  
+                              
+                      <li class="sub-menu"><a><i class="fa fa-book"></i><span>
+                        <asp:Button ID="orderhistory" runat="server" Text="Order History" 
+                            BorderStyle="None" BackColor="Transparent" onclick="orderhistorybtn_Click" /></span>
+                    </a></li>
+                    <li class="sub-menu"><a><i class="fa fa-mobile-phone"></i><span>
+                        <asp:Button ID="offerbtn" runat="server" Text="Offers" 
+                            BorderStyle="None" BackColor="Transparent" onclick="offerbtn_Click" /></span>
+                    </a></li>
+                      <li class="sub-menu"><a><i class="fa fa-envelope"></i><span>
+                        <asp:Button ID="smsbtn" runat="server" Text="Send Custom SMS" 
+                            BorderStyle="None" BackColor="Transparent" onclick="smsbtn_Click" /></span>
+                    </a></li>
+                    
+                    <li class="sub-menu"><a><i class="fa fa-info-circle"></i><span>
+                        <asp:Button ID="aboutusbtn" runat="server" Text="About us" BorderStyle="None" 
+                            BackColor="Transparent" onclick="aboutusbtn_Click" /></span>
+                    </a></li>
+                    <li class="sub-menu"><a><i class="fa fa-phone"></i><span>
+                        <asp:Button ID="contactbtn" runat="server" Text="Contact" BorderStyle="None" 
+                            BackColor="Transparent" onclick="contactbtn_Click" /></span>
+                    </a></li>
+                    <li class="sub-menu"><a><i class=" fa fa-file-text-o"></i><span>
+                        <asp:Button ID="privacypolicybtn" runat="server" Text="Terms/Privacy Policy" 
+                            BorderStyle="None" BackColor="Transparent" onclick="privacypolicybtn_Click" /></span>
+                    </a></li>
+                    <li class="sub-menu"><a><i class=" fa fa-file-text-o"></i><span>
+                        <asp:Button ID="faqsbtn" runat="server" Text="Help" 
+                            BorderStyle="None" BackColor="Transparent" onclick="faqsbtn_Click" /></span>
+                    </a></li>
+                </ul>
+                <!-- sidebar menu end-->
+            </div>
+        </aside>
+        <!--sidebar end-->
+        <asp:ContentPlaceHolder ID="maincontent" runat="server">
+        </asp:ContentPlaceHolder>
+        <!--footer start-->
+        <footer class="site-footer">
+            <div class="text-center">
+                &copy; 2015 -  <a style="color:White;" href="http://www.fotolivin.com/" target="_blank">Fotolivin</a>. All Rights Reserved. <a href="#" class="go-top"><i class="fa fa-angle-up"></i>
+                </a>
+            </div>
+             <div class="text-center">
+                Powered by <a style="color:White;" href="http://www.gamiinfotech.com/" target="_blank"> Gami Infotech </a>
+               
+            </div>
+        </footer>
+        <!--footer end-->
+    </div>
+    </form>
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/jquery-1.8.3.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="assets/js/jquery.scrollTo.min.js"></script>
+    <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="assets/js/jquery.sparkline.js"></script>
+    <!--common script for all pages-->
+    <script src="assets/js/common-scripts.js"></script>
+    <script type="text/javascript" src="assets/js/gritter/js/jquery.gritter.js"></script>
+    <script type="text/javascript" src="assets/js/gritter-conf.js"></script>
+    <!--script for this page-->
+    <script src="assets/js/sparkline-chart.js"></script>
+    <script src="assets/js/zabuto_calendar.js"></script>
+    
+    <script type="application/javascript">
+        $(document).ready(function () {
+            $("#date-popover").popover({html: true, trigger: "manual"});
+            $("#date-popover").hide();
+            $("#date-popover").click(function (e) {
+                $(this).hide();
+            });
+        
+            $("#my-calendar").zabuto_calendar({
+                action: function () {
+                    return myDateFunction(this.id, false);
+                },
+                action_nav: function () {
+                    return myNavFunction(this.id);
+                },
+                ajax: {
+                    url: "show_data.php?action=1",
+                    modal: true
+                },
+                legend: [
+                    {type: "text", label: "Special event", badge: "00"},
+                    {type: "block", label: "Regular event" }
+                ]
+            });
+        });
+        
+        
+        function myNavFunction(id) {
+            $("#date-popover").hide();
+            var nav = $("#" + id).data("navigation");
+            var to = $("#" + id).data("to");
+            console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
+        }
+    </script>
+
+     <script src="assets/js/jquery.js"></script>
+ <%--   <script src="assets/js/bootstrap.min.js"></script>--%>
+     <script type="text/javascript" src="assets/js/jquery.backstretch.min.js"></script>
+    <script>
+        $.backstretch("assets/img/bg.jpg", { speed: 1000 });
+    </script>
+
+          <script type="text/javascript" src="scripts/jquery-1.3.2.min.js"></script>
+ <script type="text/javascript" src="scripts/jquery.uploadify.js"></script>
+
+ 
+</body>
+</html>

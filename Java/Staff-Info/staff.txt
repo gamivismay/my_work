@@ -1,0 +1,12 @@
+casual	Peter	654321	lecturer	10
+full	Mary	123456	convenor	forensics
+part	Raja	222222	tutor		0.5
+part	Shirin	111111	timetabler	0.8
+casual	Recep	231654	technician	16
+full	Anna	555666	lecturer	ethics
+full	Musa	712217	tutor		security
+part	Jasmin	555555	finance		0.4
+casual	Manoj	527281	tutor		12
+casual	Ali		322224	lecturer	8
+part	Bella	123332	lecturer	0.7
+full	Alice	454545	moderator	linguistics
