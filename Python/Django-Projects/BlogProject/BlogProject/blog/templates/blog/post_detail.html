@@ -1,0 +1,68 @@
+﻿{% extends 'blog/layout.html %}
+
+{% block content %}
+<header class="masthead" style="background-image: {% static 'blog/img/home-bg.jpg' %}">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Clean Blog</h1>
+            <span class="subheading">A Blog Theme by Start Bootstrap</span>
+          </div>
+        </div>
+      </div>
+    </div>
+ </header>
+<div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+          <h1>{{ post.title }}</h1>
+          {% if post.published_date %}
+           <div class="date postdate">
+               {{ post.published_date }}
+           </div>
+          {% else %}
+          <a class ="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
+          {% endif %}
+
+          <p>{{ post.title|safe|linebreaksbr}}</p>
+          {% if user.authenticated %}
+           <a class="btn btn-primary" href="{% url 'post_edit' pk=post.pk%}">
+
+               <span class="glyphicon glyphicon-pencil">  </span>
+           </a>
+          <a class="btn btn-primary" href="{% url 'post_remove' pk=post.pk%}">
+
+               <span class="glyphicon glyphicon-remove">  </span>
+           </a>
+          {% endif %}
+          <hr>
+          <a class="btn btn-primary btn-comment" href="{% url 'add_comment_to_post' pk=post.pk %}">Add Comment</a>
+        <div class="container">
+            {% for comment in post.comments.all %}
+            <br>
+                {% if user.is_authenticated or comment.approved_comment %}
+                    {{ comment.created_date }}
+                        {% if not comment.approved_comment %}
+                        <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk%}">
+
+               <span class="glyphicon glyphicon-pencil">  </span>
+           </a>
+          <a class="btn btn-primary" href="{% url 'comment_approve' pk=comment.pk%}">
+
+               <span class="glyphicon glyphicon-ok">  </span>
+           </a>          
+                        {% endif %}
+            <p>{{comment.text|safe|linebreaks}}</p>
+            <p>Posted By: {{comment.author}}</p>
+                {% endif %}
+            {% empty %}
+            <p>No Comments!</p>
+            {% endfor %}
+        </div>
+      
+      </div>
+    </div>
+ </div>
+{% endblock %}
